@@ -38,8 +38,9 @@ def main(example: str):
     )
     elapsed_time = time.time() - start_time
     logger.info(f"Generation time: {elapsed_time:.2f} seconds")
-
-    torchaudio.save(f"output_{example}.wav", torch.from_numpy(output.audio)[None, :], output.sampling_rate)
+    rtf = (len(output.audio) / output.sampling_rate) / elapsed_time
+    print(f"RTF: {rtf:.3f}")
+    # torchaudio.save(f"output_{example}.wav", torch.from_numpy(output.audio)[None, :], output.sampling_rate)
     logger.info(f"Generated text:\n{output.generated_text}")
     logger.info(f"Saved audio to output_{example}.wav")
 
